@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>RobôCIn PSN - Registro</title>
+    <style>
+        :root {
+            --primary-green: #469C57;
+            --dark-green: #1A3C21;
+            --light-gray: #f4f4f4;
+            --medium-gray: #ddd;
+            --dark-gray: #333;
+            --white: #fff;
+            --secondary-gray: #6c757d;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--dark-green);
+            color: var(--dark-gray);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--dark-gray);
+            font-weight: 800;
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+        }
+
+        select, input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-family: 'Manrope', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        select:focus, input[type="number"]:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 3px rgba(70, 156, 87, 0.2);
+        }
+        
+        .action-buttons {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .button {
+            display: block;
+            width: 100%;
+            background-color: var(--primary-green);
+            color: var(--white);
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .button:hover {
+            background-color: #3a8a4b;
+            transform: translateY(-2px);
+        }
+
+        .clear-button {
+            background-color: transparent;
+            color: var(--secondary-gray);
+            border: 1px solid var(--medium-gray);
+            padding: 10px;
+            font-weight: 600;
+        }
+        .clear-button:hover {
+             background-color: var(--light-gray);
+             border-color: var(--secondary-gray);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>RobôCIn PSN</h1>
+        <p style="text-align:center; margin-top:-25px; margin-bottom:30px; color:#777;">Registro de Partidas</p>
+
+        <form id="partidaForm" action="/submit_form" method="POST">
+            <div class="form-group">
+                <label for="categoria">Categoria</label>
+                <select id="categoria" name="categoria" required>
+                    <option value="" disabled selected>Selecione uma categoria</option>
+                    <option value="2D">Simulação 2D</option>
+                    <option value="SSL">SSL</option>
+                    <option value="ARM">ARM Challenge</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="equipe_rival">Equipe Rival</label>
+                <select id="equipe_rival" name="equipe_rival" required>
+                    <option value="" disabled selected>Selecione uma equipe rival</option>
+                    <option value="Denilson">Denilson</option>
+                    <option value="Endrio">Endrio</option>
+                    <option value="Giovanna">Giovanna</option>
+                    <option value="Juh">Juh</option>
+                    <option value="Joab">Joab</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="placar_equipe">Nosso Placar</label>
+                <input type="number" id="placar_equipe" name="placar_equipe" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="placar_adversario">Placar Adversário</label>
+                <input type="number" id="placar_adversario" name="placar_adversario" min="0" required>
+            </div>
+            
+            <div class="action-buttons">
+                <button type="submit" class="button">Registrar Partida</button>
+                <button type="button" id="clear-btn" class="button clear-button">Limpar Campos</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('partidaForm');
+            const clearBtn = document.getElementById('clear-btn');
+
+            clearBtn.addEventListener('click', function() {
+                form.reset(); 
+                // Garante que os seletores voltem para a opção placeholder
+                document.getElementById('categoria').selectedIndex = 0;
+                document.getElementById('equipe_rival').selectedIndex = 0;
+            });
+        });
+    </script>
+</body>
+</html>
