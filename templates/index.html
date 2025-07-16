@@ -124,21 +124,16 @@
                 <label for="categoria">Categoria</label>
                 <select id="categoria" name="categoria" required>
                     <option value="" disabled selected>Selecione uma categoria</option>
+                    <option value="ARM">ARM Challenge</option>
                     <option value="2D">Simulação 2D</option>
                     <option value="SSL">SSL</option>
-                    <option value="ARM">ARM Challenge</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="equipe_rival">Equipe Rival</label>
+                <label for="equipe_rival">Equipe Rival (ou Desafio)</label>
                 <select id="equipe_rival" name="equipe_rival" required>
-                    <option value="" disabled selected>Selecione uma equipe rival</option>
-                    <option value="Denilson">Denilson</option>
-                    <option value="Endrio">Endrio</option>
-                    <option value="Giovanna">Giovanna</option>
-                    <option value="Juh">Juh</option>
-                    <option value="Joab">Joab</option>
+                    <option value="" disabled selected>Selecione uma equipe rival (ou desafio)</option>
                 </select>
             </div>
 
@@ -163,12 +158,35 @@
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('partidaForm');
             const clearBtn = document.getElementById('clear-btn');
+            const categoriaSelect = document.getElementById('categoria');
+            const equipeRivalSelect = document.getElementById('equipe_rival');
+
+            const teamsByCategory = {
+                'ARM': ['ISSO NAO FUNCIONA PQ NAO TEM DESAFIO INFORMADO'],
+                '2D': ['FRA-UNIted', 'HELIOS 2025', 'ITAndroids',
+                        'Foxsy', 'RoboTech', 'SIRLab', 'SRBIAU 2D', 'Titãs da Robótica',
+                        'YuShan 2025'],
+                'SSL': ['ER-Force', 'RoboDragons', 'TIGERs', 'ZJUNlict']
+            };
+
+            categoriaSelect.addEventListener('change', function() {
+                const selectedCategory = this.value;
+                equipeRivalSelect.innerHTML = '<option value="" disabled selected>Selecione uma equipe rival</option>';
+
+                if (teamsByCategory[selectedCategory]) {
+                    teamsByCategory[selectedCategory].forEach(team => {
+                        const option = document.createElement('option');
+                        option.value = team;
+                        option.textContent = team;
+                        equipeRivalSelect.appendChild(option);
+                    });
+                }
+            });
 
             clearBtn.addEventListener('click', function() {
-                form.reset(); 
-                // Garante que os seletores voltem para a opção placeholder
-                document.getElementById('categoria').selectedIndex = 0;
-                document.getElementById('equipe_rival').selectedIndex = 0;
+                form.reset();
+                categoriaSelect.selectedIndex = 0;
+                equipeRivalSelect.innerHTML = '<option value="" disabled selected>Selecione uma equipe rival</option>';
             });
         });
     </script>
