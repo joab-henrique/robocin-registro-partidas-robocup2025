@@ -81,7 +81,7 @@ def criar_imagem_partida(categoria, equipe_rival, nosso_placar, placar_adversari
             fonte = ImageFont.load_default(size=config['tamanho_fonte'])
         desenho.text(config['posicao'], texto_para_escrever, font=fonte, fill=config['cor'])
 
-    CAMINHO_LOGO = f'images/{equipe_rival.lower()}.jpeg'
+    CAMINHO_LOGO = f'images/{equipe_rival}.png'
     if os.path.exists(CAMINHO_LOGO):
         adicionar_logo_adversario(imagem, CAMINHO_LOGO, posicao=(610, 1190), tamanho=(200, 200))
 
