@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>Imagem Gerada</title>
+    <style>
+        :root {
+            --primary-green: #469C57;
+            --dark-green: #1A3C21;
+            --white: #fff;
+            --blue: #007bff;
+        }
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--dark-green);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+        h1 {
+            font-weight: 800;
+            margin-bottom: 25px;
+        }
+        img {
+            max-width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+        .button {
+            display: inline-block;
+            text-decoration: none;
+            color: var(--white);
+            padding: 14px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .download-btn {
+            background-color: var(--primary-green);
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+        }
+        .back-btn {
+            background-color: var(--blue);
+        }
+        .back-btn:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Imagem Gerada</h1>
+
+        <img src="data:image/png;base64,{{ imagem_gerada }}" alt="Imagem do resultado da partida">
+
+        <div class="action-buttons">
+            <a href="data:image/png;base64,{{ imagem_gerada }}" download="registro_partida.png" class="button download-btn">
+                Baixar Imagem
+            </a>
+            <a href="{{ url_for('principal') }}" class="button back-btn">
+                Gerar Outra
+            </a>
+        </div>
+    </div>
+</body>
+</html>

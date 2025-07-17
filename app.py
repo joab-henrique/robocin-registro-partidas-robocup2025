@@ -1,4 +1,7 @@
-from flask import Flask, render_template, request, flash, redirect, url_for, send_file
+# app.py (VERSÃO FINAL E CORRETA)
+
+import base64  # Importante: Adicione esta linha no topo
+from flask import Flask, render_template, request, flash, redirect, url_for
 from PIL import Image, ImageDraw, ImageFont
 import io
 import os
@@ -37,10 +40,8 @@ def criar_imagem_partida(categoria, equipe_rival, nosso_placar, placar_adversari
         resultado = 'VITÓRIA'
     elif nosso_placar < placar_adversario:
         resultado = 'DERROTA'
-        #config_texto['resultado']['posicao'] = (110, 750)
     else:
         resultado = 'EMPATE'
-        #config_texto['resultado']['posicao'] = (130, 750)
 
     imagem_path = ''
     if categoria == '2D':
@@ -85,14 +86,12 @@ def criar_imagem_partida(categoria, equipe_rival, nosso_placar, placar_adversari
     if os.path.exists(CAMINHO_LOGO):
         adicionar_logo_adversario(imagem, CAMINHO_LOGO, posicao=(610, 1190), tamanho=(200, 200))
 
-    #desenhar_texto('resultado', resultado)
     desenhar_texto('nosso_placar', str(nosso_placar))
     desenhar_texto('placar_adversario', str(placar_adversario))
 
     buffer_imagem = io.BytesIO()
     imagem.save(buffer_imagem, 'PNG')
     buffer_imagem.seek(0)
-
     return buffer_imagem
 
 def adicionar_logo_adversario(imagem_base, caminho_imagem_sobreposta, posicao, tamanho):
@@ -117,15 +116,17 @@ def enviar_formulario():
             return redirect(url_for('principal'))
 
         try:
+            # 1. Cria a imagem na memória
             buffer_imagem_editada = criar_imagem_partida(
                 categoria, equipe_rival, int(nosso_placar), int(placar_adversario)
             )
-            return send_file(
-                buffer_imagem_editada,
-                mimetype='image/png',
-                as_attachment=False,
-                download_name='registro_partida.png'
-            )
+
+            # 2. Codifica a imagem para uma string de texto (Base64)
+            imagem_b64 = base64.b64encode(buffer_imagem_editada.getvalue()).decode('utf-8')
+
+            # 3. Renderiza a página de resultado e passa a imagem para ela
+            return render_template('resultado.html', imagem_gerada=imagem_b64)
+
         except FileNotFoundError as e:
             flash(f"Erro de arquivo: {e}. Verifique se os templates e logos estão nos caminhos corretos.")
             return redirect(url_for('principal'))
