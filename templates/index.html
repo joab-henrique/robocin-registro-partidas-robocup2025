@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
-    <title>RobôCIn PSN - Registro</title>
+    <title>RobôCIn - Registro de Resultados</title>
     <style>
         :root {
             --primary-green: #469C57;
@@ -15,108 +15,39 @@
             --white: #fff;
             --secondary-gray: #6c757d;
         }
-
         body {
-            font-family: 'Manrope', sans-serif;
-            background-color: var(--dark-green);
-            color: var(--dark-gray);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
+            font-family: 'Manrope', sans-serif; background-color: var(--dark-green); color: var(--dark-gray);
+            display: flex; justify-content: center; align-items: flex-start; min-height: 100vh;
+            margin: 0; padding: 20px; box-sizing: border-box;
         }
-
         .container {
-            background-color: var(--white);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-            width: 100%;
-            max-width: 500px;
+            background-color: var(--white); padding: 40px; border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); width: 100%; max-width: 600px;
+            margin-top: 20px; margin-bottom: 20px;
         }
-
-        h1 {
-            text-align: center;
-            color: var(--dark-gray);
-            font-weight: 800;
-            font-size: 2rem;
-            margin-bottom: 30px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #555;
-            font-weight: 600;
-        }
-
+        h1 { text-align: center; color: var(--dark-gray); font-weight: 800; font-size: 2rem; margin-bottom: 30px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; color: #555; font-weight: 600; }
         select, input[type="number"] {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--medium-gray);
-            border-radius: 8px;
-            box-sizing: border-box;
-            font-family: 'Manrope', sans-serif;
-            font-size: 1rem;
+            width: 100%; padding: 12px; border: 1px solid var(--medium-gray); border-radius: 8px;
+            box-sizing: border-box; font-family: 'Manrope', sans-serif; font-size: 1rem;
             transition: border-color 0.3s, box-shadow 0.3s;
         }
-
-        select:focus, input[type="number"]:focus {
-            outline: none;
-            border-color: var(--primary-green);
-            box-shadow: 0 0 0 3px rgba(70, 156, 87, 0.2);
-        }
-        
-        .action-buttons {
-            margin-top: 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
+        select:focus, input[type="number"]:focus { outline: none; border-color: var(--primary-green); box-shadow: 0 0 0 3px rgba(70, 156, 87, 0.2); }
+        .action-buttons { margin-top: 30px; display: flex; flex-direction: column; gap: 15px; }
         .button {
-            display: block;
-            width: 100%;
-            background-color: var(--primary-green);
-            color: var(--white);
-            padding: 14px 20px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: background-color 0.3s, transform 0.2s;
+            display: block; width: 100%; background-color: var(--primary-green); color: var(--white);
+            padding: 14px 20px; border: none; border-radius: 8px; cursor: pointer;
+            font-size: 1rem; font-weight: 600; transition: background-color 0.3s, transform 0.2s;
         }
-
-        .button:hover {
-            background-color: #3a8a4b;
-            transform: translateY(-2px);
-        }
-
-        .clear-button {
-            background-color: transparent;
-            color: var(--secondary-gray);
-            border: 1px solid var(--medium-gray);
-            padding: 10px;
-            font-weight: 600;
-        }
-        .clear-button:hover {
-             background-color: var(--light-gray);
-             border-color: var(--secondary-gray);
-        }
-
+        .button:hover { background-color: #3a8a4b; transform: translateY(-2px); }
+        .partida-group { border: 1px solid #e0e0e0; padding: 20px; border-radius: 8px; margin-top: 15px; }
+        .partida-group h3 { margin-top: 0; color: var(--primary-green); }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>RobôCIn PSN</h1>
+        <h1>RobôCIn Resultados</h1>
         <p style="text-align:center; margin-top:-25px; margin-bottom:30px; color:#777;">Registro de Partidas</p>
 
         <form id="partidaForm" action="/submit_form" method="POST">
@@ -130,90 +61,114 @@
                 </select>
             </div>
 
-            <div class="form-group" id="num_jogos_group" style="display: none;">
-                <label for="num_jogos">Número de Jogos</label>
-                <select id="num_jogos" name="num_jogos">
-                    <option value="" disabled selected>Selecione a quantidade</option>
-                    <option value="1">1 Jogo</option>
-                    <option value="2">2 Jogos</option>
-                    <option value="3">3 Jogos</option>
-                    <option value="4">4 Jogos</option>
-                    <option value="5">5 Jogos</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="equipe_rival">Equipe Rival (ou Desafio)</label>
-                <select id="equipe_rival" name="equipe_rival" required>
-                    <option value="" disabled selected>Selecione uma equipe rival (ou desafio)</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="placar_equipe">Nosso Placar</label>
-                <input type="number" id="placar_equipe" name="placar_equipe" min="0" required>
-            </div>
-
-            <div class="form-group">
-                <label for="placar_adversario">Placar Adversário</label>
-                <input type="number" id="placar_adversario" name="placar_adversario" min="0" required>
-            </div>
+            <div id="campos_especificos"></div>
             
             <div class="action-buttons">
-                <button type="submit" class="button">Registrar Partida</button>
-                <button type="button" id="clear-btn" class="button clear-button">Limpar Campos</button>
+                <button type="submit" class="button">Gerar Imagem</button>
             </div>
         </form>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('partidaForm');
-            const clearBtn = document.getElementById('clear-btn');
             const categoriaSelect = document.getElementById('categoria');
-            const equipeRivalSelect = document.getElementById('equipe_rival');
-            
-            // NOVO: Seleciona o grupo do campo de número de jogos
-            const numJogosGroup = document.getElementById('num_jogos_group');
+            const camposEspecificosContainer = document.getElementById('campos_especificos');
 
             const teamsByCategory = {
-                'ARM': ['ISSO NAO FUNCIONA PQ NAO TEM DESAFIO INFORMADO'],
-                '2D': ['FRA-UNIted', 'HELIOS 2025', 'ITAndroids',
-                        'Oxsy', 'RoboTech', 'SIRLab', 'SRBIAU 2D', 'Titãs da Robótica',
-                        'YuShan 2025'],
+                'ARM': ['Desafio 1', 'Desafio 2'],
+                '2D': ['FRA-UNIted', 'HELIOS 2025', 'ITAndroids', 'Oxsy', 'RoboTech', 'SIRLab', 'SRBIAU 2D', 'Titãs da Robótica', 'YuShan 2025'],
                 'SSL': ['ER-Force', 'RoboDragons', 'TIGERs', 'ZJUNlict']
             };
 
+            function criarCamposSimples(categoria, nomeSufixo) {
+                const rivais = teamsByCategory[categoria] || [];
+                let options = rivais.map(team => `<option value="${team}">${team}</option>`).join('');
+
+                return `
+                    <div class="form-group">
+                        <label for="equipe_rival_${nomeSufixo}">Equipe Rival (ou Desafio)</label>
+                        <select id="equipe_rival_${nomeSufixo}" name="equipe_rival_${nomeSufixo}" required>
+                            <option value="" disabled selected>Selecione</option>
+                            ${options}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="placar_equipe_${nomeSufixo}">Nosso Placar</label>
+                        <input type="number" id="placar_equipe_${nomeSufixo}" name="placar_equipe_${nomeSufixo}" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="placar_adversario_${nomeSufixo}">Placar Adversário</label>
+                        <input type="number" id="placar_adversario_${nomeSufixo}" name="placar_adversario_${nomeSufixo}" min="0" required>
+                    </div>
+                `;
+            }
+
+            function criarCampos2D() {
+                return `
+                    <div class="form-group">
+                        <label for="num_jogos">Número de Jogos</label>
+                        <select id="num_jogos" name="num_jogos" required>
+                            <option value="" disabled selected>Selecione a quantidade</option>
+                            <option value="1">1 Jogo</option>
+                            <option value="2">2 Jogos</option>
+                            <option value="3">3 Jogos</option>
+                            <option value="4">4 Jogos</option>
+                            <option value="5">5 Jogos</option>
+                        </select>
+                    </div>
+                    <div id="partidas_container"></div>
+                `;
+            }
+
+            function criarInputsPartidaMulti(index, rivais) {
+                let options = rivais.map(team => `<option value="${team}">${team}</option>`).join('');
+
+                return `
+                    <div class="partida-group">
+                        <h3>Partida ${index + 1}</h3>
+                        <div class="form-group">
+                            <label for="equipe_rival_${index}">Equipe Rival</label>
+                            <select id="equipe_rival_${index}" name="equipe_rival[]" required>
+                                <option value="" disabled selected>Selecione o rival</option>
+                                ${options}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="placar_equipe_${index}">Nosso Placar</p>
+                            <input type="number" id="placar_equipe_${index}" name="placar_equipe[]" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="placar_adversario_${index}">Placar Adversário</label>
+                            <input type="number" id="placar_adversario_${index}" name="placar_adversario[]" min="0" required>
+                        </div>
+                    </div>
+                `;
+            }
+
             categoriaSelect.addEventListener('change', function() {
                 const selectedCategory = this.value;
-                equipeRivalSelect.innerHTML = '<option value="" disabled selected>Selecione uma equipe rival</option>';
+                camposEspecificosContainer.innerHTML = '';
 
-                if (teamsByCategory[selectedCategory]) {
-                    teamsByCategory[selectedCategory].forEach(team => {
-                        const option = document.createElement('option');
-                        option.value = team;
-                        option.textContent = team;
-                        equipeRivalSelect.appendChild(option);
-                    });
-                }
-                
-                // NOVO: Lógica para mostrar/ocultar o campo de número de jogos
                 if (selectedCategory === '2D') {
-                    numJogosGroup.style.display = 'block';
-                    document.getElementById('num_jogos').required = true;
-                } else {
-                    numJogosGroup.style.display = 'none';
-                    document.getElementById('num_jogos').required = false;
+                    camposEspecificosContainer.innerHTML = criarCampos2D();
+                    const numJogosSelect = document.getElementById('num_jogos');
+                    numJogosSelect.addEventListener('change', function() {
+                        const numJogos = parseInt(this.value, 10);
+                        const partidasContainer = document.getElementById('partidas_container');
+                        partidasContainer.innerHTML = '';
+                        const rivais2D = teamsByCategory['2D'] || [];
+                        
+                        if (numJogos === 1) {
+                            partidasContainer.innerHTML = criarCamposSimples('2D', '2d_simples');
+                        } else if (numJogos > 1) {
+                            for (let i = 0; i < numJogos; i++) {
+                                partidasContainer.innerHTML += criarInputsPartidaMulti(i, rivais2D);
+                            }
+                        }
+                    });
+                } else if (selectedCategory === 'SSL' || selectedCategory === 'ARM') {
+                    camposEspecificosContainer.innerHTML = criarCamposSimples(selectedCategory, 'simples');
                 }
-            });
-
-            clearBtn.addEventListener('click', function() {
-                form.reset();
-                categoriaSelect.selectedIndex = 0;
-                equipeRivalSelect.innerHTML = '<option value="" disabled selected>Selecione uma equipe rival</option>';
-                // NOVO: Garante que o campo extra seja ocultado ao limpar
-                numJogosGroup.style.display = 'none';
-                document.getElementById('num_jogos').required = false;
             });
         });
     </script>
