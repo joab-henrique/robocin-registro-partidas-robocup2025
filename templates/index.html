@@ -130,6 +130,18 @@
                 </select>
             </div>
 
+            <div class="form-group" id="num_jogos_group" style="display: none;">
+                <label for="num_jogos">Número de Jogos</label>
+                <select id="num_jogos" name="num_jogos">
+                    <option value="" disabled selected>Selecione a quantidade</option>
+                    <option value="1">1 Jogo</option>
+                    <option value="2">2 Jogos</option>
+                    <option value="3">3 Jogos</option>
+                    <option value="4">4 Jogos</option>
+                    <option value="5">5 Jogos</option>
+                </select>
+            </div>
+
             <div class="form-group">
                 <label for="equipe_rival">Equipe Rival (ou Desafio)</label>
                 <select id="equipe_rival" name="equipe_rival" required>
@@ -160,6 +172,9 @@
             const clearBtn = document.getElementById('clear-btn');
             const categoriaSelect = document.getElementById('categoria');
             const equipeRivalSelect = document.getElementById('equipe_rival');
+            
+            // NOVO: Seleciona o grupo do campo de número de jogos
+            const numJogosGroup = document.getElementById('num_jogos_group');
 
             const teamsByCategory = {
                 'ARM': ['ISSO NAO FUNCIONA PQ NAO TEM DESAFIO INFORMADO'],
@@ -181,12 +196,24 @@
                         equipeRivalSelect.appendChild(option);
                     });
                 }
+                
+                // NOVO: Lógica para mostrar/ocultar o campo de número de jogos
+                if (selectedCategory === '2D') {
+                    numJogosGroup.style.display = 'block';
+                    document.getElementById('num_jogos').required = true;
+                } else {
+                    numJogosGroup.style.display = 'none';
+                    document.getElementById('num_jogos').required = false;
+                }
             });
 
             clearBtn.addEventListener('click', function() {
                 form.reset();
                 categoriaSelect.selectedIndex = 0;
                 equipeRivalSelect.innerHTML = '<option value="" disabled selected>Selecione uma equipe rival</option>';
+                // NOVO: Garante que o campo extra seja ocultado ao limpar
+                numJogosGroup.style.display = 'none';
+                document.getElementById('num_jogos').required = false;
             });
         });
     </script>

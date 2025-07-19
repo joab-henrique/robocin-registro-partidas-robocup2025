@@ -1,6 +1,4 @@
-# app.py (VERSÃO FINAL E CORRETA)
-
-import base64  # Importante: Adicione esta linha no topo
+import base64
 from flask import Flask, render_template, request, flash, redirect, url_for
 from PIL import Image, ImageDraw, ImageFont
 import io
@@ -9,12 +7,6 @@ import copy
 
 app = Flask(__name__)
 app.secret_key = 'uma_chave_secreta_muito_segura_e_longa_para_producao'
-
-
-# ----- TEMPLATES SIMULAÇÃO 2D -----
-CAMINHO_TEMPLATE_IMAGEM_2D_VITORIA = 'images/template_2d_vitoria.png'
-CAMINHO_TEMPLATE_IMAGEM_2D_EMPATE = 'images/template_2d_empate.png'
-CAMINHO_TEMPLATE_IMAGEM_2D_DERROTA = 'images/template_2d_derrota.png'
 
 # ----- TEMPLATES SSL -----
 CAMINHO_TEMPLATE_IMAGEM_SSL_VITORIA = 'images/template_ssl_vitoria.png'
@@ -34,7 +26,7 @@ CONFIGURACOES_TEXTO = {
     'placar_adversario': {'posicao': (700, 1480), 'tamanho_fonte': 60, 'cor': (255, 255, 255)},
 }
 
-def criar_imagem_partida(categoria, equipe_rival, nosso_placar, placar_adversario):
+def criar_imagem_partida(categoria, equipe_rival, nosso_placar, placar_adversario, num_jogos=None):
     resultado = ''
     if nosso_placar > placar_adversario:
         resultado = 'VITÓRIA'
@@ -45,12 +37,18 @@ def criar_imagem_partida(categoria, equipe_rival, nosso_placar, placar_adversari
 
     imagem_path = ''
     if categoria == '2D':
-        if resultado == 'VITÓRIA':
-            imagem_path = CAMINHO_TEMPLATE_IMAGEM_2D_VITORIA
-        elif resultado == 'EMPATE':
-            imagem_path = CAMINHO_TEMPLATE_IMAGEM_2D_EMPATE
+        if num_jogos > 1:
+            imagem_path = f'images/template_resultados_2d_{num_jogos}.png'
+        elif num_jogos == 1:
+            if resultado == 'VITÓRIA':
+                imagem_path = f'images/template_2d_vitoria.png'
+            elif resultado == 'EMPATE':
+                imagem_path = f'images/template_2d_empate.png'
+            else:
+                imagem_path = f'images/template_2d_derrota.png'
         else:
-            imagem_path = CAMINHO_TEMPLATE_IMAGEM_2D_DERROTA
+            raise ValueError("Número de jogos não especificado para a categoria Simulação 2D.")
+            
     elif categoria == 'SSL':
         if resultado == 'VITÓRIA':
             imagem_path = CAMINHO_TEMPLATE_IMAGEM_SSL_VITORIA
@@ -69,7 +67,7 @@ def criar_imagem_partida(categoria, equipe_rival, nosso_placar, placar_adversari
     try:
         imagem = Image.open(imagem_path).convert("RGBA")
     except FileNotFoundError:
-        raise FileNotFoundError(f"Template de imagem não encontrado em: {imagem_path}")
+        raise FileNotFoundError(f"Template de imagem não encontrado em: {imagem_path}. Verifique se salvou a imagem com o nome correto.")
 
     desenho = ImageDraw.Draw(imagem)
     config_texto = copy.deepcopy(CONFIGURACOES_TEXTO)
@@ -86,6 +84,7 @@ def criar_imagem_partida(categoria, equipe_rival, nosso_placar, placar_adversari
     if os.path.exists(CAMINHO_LOGO):
         adicionar_logo_adversario(imagem, CAMINHO_LOGO, posicao=(610, 1190), tamanho=(200, 200))
 
+    #desenhar_texto('resultado', resultado)
     desenhar_texto('nosso_placar', str(nosso_placar))
     desenhar_texto('placar_adversario', str(placar_adversario))
 
@@ -110,21 +109,29 @@ def enviar_formulario():
         equipe_rival = request.form.get('equipe_rival')
         nosso_placar = request.form.get('placar_equipe')
         placar_adversario = request.form.get('placar_adversario')
+        num_jogos_str = request.form.get('num_jogos')
 
         if not all([categoria, equipe_rival, nosso_placar, placar_adversario]):
             flash('Por favor, preencha todos os campos do formulário.')
             return redirect(url_for('principal'))
+        
+        if categoria == '2D' and not num_jogos_str:
+            flash('Por favor, selecione o número de jogos para a Simulação 2D.')
+            return redirect(url_for('principal'))
 
         try:
-            # 1. Cria a imagem na memória
+            num_jogos = int(num_jogos_str) if num_jogos_str else None
+            
             buffer_imagem_editada = criar_imagem_partida(
-                categoria, equipe_rival, int(nosso_placar), int(placar_adversario)
+                categoria, 
+                equipe_rival, 
+                int(nosso_placar), 
+                int(placar_adversario),
+                num_jogos
             )
 
-            # 2. Codifica a imagem para uma string de texto (Base64)
             imagem_b64 = base64.b64encode(buffer_imagem_editada.getvalue()).decode('utf-8')
 
-            # 3. Renderiza a página de resultado e passa a imagem para ela
             return render_template('resultado.html', imagem_gerada=imagem_b64)
 
         except FileNotFoundError as e:
