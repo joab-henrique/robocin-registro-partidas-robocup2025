@@ -20,7 +20,6 @@ CAMINHO_TEMPLATE_IMAGEM_ARM_DERROTA = 'images/template_arm_derrota.png'
 
 # --- FONTES E LOGOS ---
 CAMINHO_FONTE = 'fonts/Manrope-Bold.ttf'
-TAMANHO_LOGO_RIVAL_2D = (160, 160)
 
 # --- CONFIGURAÇÕES PARA JOGOS SIMPLES (1 JOGO 2D, SSL, ARM) ---
 CONFIGURACOES_JOGO_UNICO = {
@@ -30,33 +29,52 @@ CONFIGURACOES_JOGO_UNICO = {
     'logo_adversario': {'posicao': (610, 1190), 'tamanho': (200, 200)}
 }
 
-# --- CONFIGURAÇÕES DE POSIÇÃO PARA SIMULAÇÃO 2D (MÚLTIPLOS JOGOS) ---
+# --- CONFIGURAÇÕES AJUSTADAS PARA SIMULAÇÃO 2D (MÚLTIPLOS JOGOS) ---
 CONFIGURACOES_2D_MULTI = {
-    '2': {'caminho_template': 'images/template_resultados_2d_2.png', 'tamanho_fonte': 80, 'partidas': [
-            {'nosso_placar': (200, 810), 'logo_rival': (715, 800), 'placar_rival': (880, 810)},
-            {'nosso_placar': (200, 1140), 'logo_rival': (715, 1130), 'placar_rival': (880, 1140)},
-        ]},
-    '3': {'caminho_template': 'images/template_resultados_2d_3.png', 'tamanho_fonte': 80, 'partidas': [
-            {'nosso_placar': (200, 670), 'logo_rival': (715, 660), 'placar_rival': (880, 670)},
-            {'nosso_placar': (200, 940), 'logo_rival': (715, 930), 'placar_rival': (880, 940)},
-            {'nosso_placar': (200, 1210), 'logo_rival': (715, 1200), 'placar_rival': (880, 1210)},
-        ]},
-    '4': {'caminho_template': 'images/template_resultados_2d_4.png', 'tamanho_fonte': 80, 'partidas': [
-            {'nosso_placar': (170, 640), 'logo_rival': (395, 500), 'placar_rival': (445, 640)},
-            {'nosso_placar': (685, 640), 'logo_rival': (915, 500), 'placar_rival': (965, 640)},
-            {'nosso_placar': (170, 1160), 'logo_rival': (395, 1020), 'placar_rival': (445, 1160)},
-            {'nosso_placar': (685, 1160), 'logo_rival': (915, 1020), 'placar_rival': (965, 1160)},
-        ]},
-    '5': {'caminho_template': 'images/template_resultados_2d_5.png', 'tamanho_fonte': 80, 'partidas': [
-            {'nosso_placar': (200, 620), 'logo_rival': (715, 580), 'placar_rival': (880, 620)},
-            {'nosso_placar': (200, 810), 'logo_rival': (715, 770), 'placar_rival': (880, 810)},
-            {'nosso_placar': (200, 1000), 'logo_rival': (715, 960), 'placar_rival': (880, 1000)},
-            {'nosso_placar': (200, 1190), 'logo_rival': (715, 1150), 'placar_rival': (880, 1190)},
-            {'nosso_placar': (200, 1380), 'logo_rival': (715, 1340), 'placar_rival': (880, 1380)},
-        ]}
+    '2': {
+        'caminho_template': 'images/template_resultados_2d_2.png', 
+        'tamanho_fonte': 50, 
+        'tamanho_logo': (130, 130),
+        'partidas': [
+            {'nosso_placar': (935,980), 'logo_rival': (625, 810), 'placar_rival': (670,980)},
+            {'nosso_placar': (140, 1262), 'logo_rival': (350, 1100), 'placar_rival': (400, 1262)},
+        ]
+    },
+    '3': { # PRECISA AJUSTAR TODAS AS INFOS, ATE TAMANHO DA LOGO!!!!!!!!!!!!
+        'caminho_template': 'images/template_resultados_2d_3.png', 
+        'tamanho_fonte': 70,
+        'tamanho_logo': (140, 140),
+        'partidas': [
+            {'nosso_placar': (270, 660), 'logo_rival': (725, 580), 'placar_rival': (765, 660)},
+            {'nosso_placar': (270, 930), 'logo_rival': (725, 850), 'placar_rival': (765, 930)},
+            {'nosso_placar': (270, 1200), 'logo_rival': (725, 1120), 'placar_rival': (765, 1200)},
+        ]
+    },
+    '4': {
+        'caminho_template': 'images/template_resultados_2d_4.png', 
+        'tamanho_fonte': 50,
+        'tamanho_logo': (130, 130),
+        'partidas': [
+            {'nosso_placar': (935, 865), 'logo_rival': (630, 700), 'placar_rival': (680, 865)},
+            {'nosso_placar': (140, 1085), 'logo_rival': (352, 920), 'placar_rival': (400, 1085)},
+            {'nosso_placar': (935, 1340), 'logo_rival': (630, 1180), 'placar_rival': (680, 1340)},
+            {'nosso_placar': (140, 1607), 'logo_rival': (352, 1440), 'placar_rival': (400, 1607)},
+        ]
+    },
+    '5': { # PRECISA AJUSTAR TODAS AS INFOS, ATE TAMANHO DA LOGO!!!!!!!!!!!!
+        'caminho_template': 'images/template_resultados_2d_5.png', 
+        'tamanho_fonte': 70,
+        'tamanho_logo': (140, 140),
+        'partidas': [
+            {'nosso_placar': (270, 610), 'logo_rival': (725, 530), 'placar_rival': (765, 610)},
+            {'nosso_placar': (270, 800), 'logo_rival': (725, 720), 'placar_rival': (765, 800)},
+            {'nosso_placar': (270, 990), 'logo_rival': (725, 910), 'placar_rival': (765, 990)},
+            {'nosso_placar': (270, 1180), 'logo_rival': (725, 1100), 'placar_rival': (765, 1180)},
+            {'nosso_placar': (270, 1370), 'logo_rival': (725, 1290), 'placar_rival': (765, 1370)},
+        ]
+    }
 }
 
-# --- FUNÇÕES AUXILIARES ---
 def adicionar_logo(imagem_base, caminho_logo, posicao, tamanho):
     if not os.path.exists(caminho_logo):
         print(f"Aviso: Logo não encontrada em {caminho_logo}, será ignorada.")
@@ -68,7 +86,6 @@ def adicionar_logo(imagem_base, caminho_logo, posicao, tamanho):
 def desenhar_texto(desenho, texto, posicao, fonte, cor):
     desenho.text(posicao, str(texto), font=fonte, fill=cor)
 
-# --- FUNÇÕES DE CRIAÇÃO DE IMAGEM ---
 def criar_imagem_2d_multi(num_jogos, dados_partidas):
     config = CONFIGURACOES_2D_MULTI.get(str(num_jogos))
     if not config:
@@ -81,11 +98,13 @@ def criar_imagem_2d_multi(num_jogos, dados_partidas):
     except IOError:
         fonte = ImageFont.load_default(size=config['tamanho_fonte'])
 
+    tamanho_logo = config['tamanho_logo']
+
     for i, partida_info in enumerate(config['partidas']):
         dados_partida_atual = dados_partidas[i]
         desenhar_texto(desenho, dados_partida_atual['nosso_placar'], partida_info['nosso_placar'], fonte, (255,255,255))
         caminho_logo_rival = f"images/{dados_partida_atual['equipe_rival']}.png"
-        adicionar_logo(imagem, caminho_logo_rival, partida_info['logo_rival'], TAMANHO_LOGO_RIVAL_2D)
+        adicionar_logo(imagem, caminho_logo_rival, partida_info['logo_rival'], tamanho_logo)
         desenhar_texto(desenho, dados_partida_atual['placar_rival'], partida_info['placar_rival'], fonte, (255,255,255))
         
     buffer_imagem = io.BytesIO()
@@ -94,25 +113,24 @@ def criar_imagem_2d_multi(num_jogos, dados_partidas):
     return buffer_imagem
 
 def criar_imagem_jogo_unico(categoria, nosso_placar, placar_adversario, equipe_rival):
-    # Determina o TIPO de resultado para escolher o template correto
     if nosso_placar > placar_adversario: resultado_tipo = 'VITORIA'
     elif nosso_placar < placar_adversario: resultado_tipo = 'DERROTA'
     else: resultado_tipo = 'EMPATE'
 
-    caminho_template_base = f'CAMINHO_TEMPLATE_{categoria.upper()}_{resultado_tipo}'
+    if categoria == '2D':
+        caminho_template_base = f'CAMINHO_TEMPLATE_2D_{resultado_tipo}'
+    else:
+        caminho_template_base = f'CAMINHO_TEMPLATE_IMAGEM_{categoria.upper()}_{resultado_tipo}'
+    
     caminho_template = globals()[caminho_template_base]
 
     imagem = Image.open(caminho_template).convert("RGBA")
     desenho = ImageDraw.Draw(imagem)
 
-    # Itera sobre as configurações para desenhar APENAS placares e logo
     for campo, config in CONFIGURACOES_JOGO_UNICO.items():
-        # **A CORREÇÃO ESTÁ AQUI: Ignora o campo 'resultado' para não desenhá-lo**
         if campo == 'resultado':
             continue
-        
         if 'logo' in campo: continue
-
         try:
             fonte = ImageFont.truetype(CAMINHO_FONTE, config['tamanho_fonte'])
         except IOError:
@@ -127,7 +145,6 @@ def criar_imagem_jogo_unico(categoria, nosso_placar, placar_adversario, equipe_r
         if texto_para_escrever:
             desenhar_texto(desenho, texto_para_escrever, config['posicao'], fonte, config['cor'])
 
-    # Adiciona a logo do adversário
     logo_config = CONFIGURACOES_JOGO_UNICO['logo_adversario']
     caminho_logo_rival = f"images/{equipe_rival}.png"
     adicionar_logo(imagem, caminho_logo_rival, logo_config['posicao'], logo_config['tamanho'])
@@ -137,7 +154,6 @@ def criar_imagem_jogo_unico(categoria, nosso_placar, placar_adversario, equipe_r
     buffer_imagem.seek(0)
     return buffer_imagem
 
-# --- ROTAS FLASK ---
 @app.route('/')
 def principal():
     return render_template('index.html')
@@ -165,7 +181,7 @@ def enviar_formulario():
                 buffer_imagem_editada = criar_imagem_jogo_unico(
                     '2D', int(nosso_placar_str), int(placar_adversario_str), equipe_rival
                 )
-            else: # 2 a 5 jogos
+            else:
                 equipes_rivais = request.form.getlist('equipe_rival[]')
                 nossos_placares = request.form.getlist('placar_equipe[]')
                 placares_rivais = request.form.getlist('placar_adversario[]')
