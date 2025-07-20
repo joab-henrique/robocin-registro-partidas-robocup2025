@@ -40,14 +40,14 @@ CONFIGURACOES_2D_MULTI = {
             {'nosso_placar': (140, 1262), 'logo_rival': (350, 1100), 'placar_rival': (400, 1262)},
         ]
     },
-    '3': { # PRECISA AJUSTAR TODAS AS INFOS, ATE TAMANHO DA LOGO!!!!!!!!!!!!
+    '3': {
         'caminho_template': 'images/template_resultados_2d_3.png', 
-        'tamanho_fonte': 70,
-        'tamanho_logo': (140, 140),
+        'tamanho_fonte': 50,
+        'tamanho_logo': (130, 130),
         'partidas': [
-            {'nosso_placar': (270, 660), 'logo_rival': (725, 580), 'placar_rival': (765, 660)},
-            {'nosso_placar': (270, 930), 'logo_rival': (725, 850), 'placar_rival': (765, 930)},
-            {'nosso_placar': (270, 1200), 'logo_rival': (725, 1120), 'placar_rival': (765, 1200)},
+            {'nosso_placar': (940, 912), 'logo_rival': (630, 750), 'placar_rival': (675, 912)},
+            {'nosso_placar': (135, 1198), 'logo_rival': (340, 1033), 'placar_rival': (392, 1198)},
+            {'nosso_placar': (940, 1497), 'logo_rival': (630, 1333), 'placar_rival': (675, 1497)},
         ]
     },
     '4': {
@@ -61,10 +61,10 @@ CONFIGURACOES_2D_MULTI = {
             {'nosso_placar': (140, 1607), 'logo_rival': (352, 1440), 'placar_rival': (400, 1607)},
         ]
     },
-    '5': { # PRECISA AJUSTAR TODAS AS INFOS, ATE TAMANHO DA LOGO!!!!!!!!!!!!
+    '5': {
         'caminho_template': 'images/template_resultados_2d_5.png', 
-        'tamanho_fonte': 70,
-        'tamanho_logo': (140, 140),
+        'tamanho_fonte': 50,
+        'tamanho_logo': (130, 130),
         'partidas': [
             {'nosso_placar': (270, 610), 'logo_rival': (725, 530), 'placar_rival': (765, 610)},
             {'nosso_placar': (270, 800), 'logo_rival': (725, 720), 'placar_rival': (765, 800)},
